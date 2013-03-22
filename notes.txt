@@ -1,0 +1,27 @@
+A user can log in and view his list
+A user must be able to add a new task
+A user should be able to mark a task as complete
+A user can set a due date
+A user can change a due date
+Pull up and view only unfinished tasks
+Create a task title and description
+Assign other users to your tasks?
+Multiple lists
+Sub-tasks
+
+
+USERS
+id - int (primary key)
+email - varchar(64)
+password - varchar(64)
+first_name - varchar (64)
+last_name - varchar (64)
+
+TASKS
+id - int (primary key)
+title - varchar(64)
+description - varchar(255)
+title created_at - datetime
+due date - datetime
+completed_at - datetime
+user_id - int (foreign key to USERS table)
