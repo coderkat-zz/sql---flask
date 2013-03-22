@@ -1,0 +1,18 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+	<title>New Task</title>
+</head>
+<body>
+	<h1>Add a new task</h1>
+
+	<form name="new_task" action="/save_task" method="post">
+		Task title*: <input type="text" name="task_title"><br />
+		Task description*: <input type="text" name="task_description"><br />
+		Task due date*: <input type="text" name="task_due_date"><br />
+		<input type="submit" value="Add new task">
+	</form>
+
+
+</body>
+</html>

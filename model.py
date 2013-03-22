@@ -53,12 +53,11 @@ def complete_task(db, task_id):
     return
 
 # get tasks by user or get all tasks by all users
-def get_tasks(*args): 
-    db = args[0]
+def get_tasks(db, user_id): 
     c = db.cursor()
     
-    if len(args) == 2:
-        user_id = str(args[1])
+    if user_id:
+        user_id = str(user_id)
         query = """SELECT * FROM Tasks WHERE user_id = ?"""
         c.execute(query, (user_id))
     else:
@@ -69,13 +68,12 @@ def get_tasks(*args):
 
     if rows:
         fields = ['id', 'title', 'description', 'created_at', 'due_date', 'completed_at', 'user_id']
-        task_dict = {}
+        tasks = []
         for row in rows:
-            temprow = zip(fields, row)
-            for item in temprow:
-                task_dict.setdefault(item[0], []).append(item[1])
+            task = dict(zip(fields, row))
+            tasks.append(task) #adds in dictionary as an item in the list, will end up with a list of dictionaries
 
-        return task_dict
+        return tasks #we return a dictionary so that latter we can use the keys in the dict as attributes when displaying variables in the HTML templates or just pull values through keys directly
 
     return None
 
