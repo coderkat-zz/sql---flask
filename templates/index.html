@@ -1,8 +1,9 @@
-<html>
-<head>
-	<title>Tipsy</title>
-</head>
-<body>
+{% extends "header.html" %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
 	<h1>Welcome to Tipsy, {{ user_name }}</h1>
-</body>
-</html>
+
+	<a href="{{ url_for('list_tasks') }}">View all the tasks for all users.</a><br />
+	<a href="{{ url_for('new_tasks') }}">Add in a new task here.</a><br />
+{% endblock %}

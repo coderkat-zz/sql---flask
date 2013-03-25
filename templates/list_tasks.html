@@ -1,9 +1,8 @@
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
-	<title>Tasks</title>
-</head>
-<body>
+{% extends "header.html" %}
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+
 	<h1>Task list</h1>
 
 	<table>
@@ -15,7 +14,6 @@
 			<td><strong>Task due date</strong></td>
 			<td><strong>Task completed on</strong></td>
 			<td><strong>Assigned user</strong></td>
-			<td><strong>User's email</strong></td>
 		</tr>
 	{% for item in tasks %}
 		<tr>
@@ -26,9 +24,8 @@
 			<td>{{  item.due_date  }}</td>
 			<td>{{  item.completed_date  }}</td>
 			<td>{{  item.user_id  }}</td>
-			<td>{{  users[item.user_id]  }}</td>
 		</tr>
 	{% endfor %}
 	</table>
-</body>
-</html>
+
+{% endblock %}

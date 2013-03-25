@@ -1,15 +1,4 @@
-A user can log in and view his list
-A user must be able to add a new task
-A user should be able to mark a task as complete
-A user can set a due date
-A user can change a due date
-Pull up and view only unfinished tasks
-Create a task title and description
-Assign other users to your tasks?
-Multiple lists
-Sub-tasks
-
-
+DB design:
 USERS
 id - int (primary key)
 email - varchar(64)
@@ -25,3 +14,38 @@ title created_at - datetime
 due date - datetime
 completed_at - datetime
 user_id - int (foreign key to USERS table)
+
+--------------------------------------------------
+Create a task title and description
+- figure out how to sanitize data (URL encode) -- done!
+- require that date be in a certain format
+- success msg then redirect to all tasks view OR error message of what's missing and go back to new task page
+- create task assigned to logged in user
+
+Homepage
+- log in as user (forms, sessions) OR just browse publicly
+- Page to create new users
+- view all users of app
+
+Options for Task List view
+- view only your tasks (includes private assigned to you)
+- view all tasks/users (except private tasks)
+- view tasks by user (search by username)
+- view tasks by status (completed or not) "split completed tasks off from incomplete tasks (Jinja templates)""
+
+Edit tasks
+- mark tasks assigned to you as complete (forms)
+- change title, description, due date of task after creation
+- can't edit other people's tasks in any way
+- delete tasks
+
+Set task as private or public
+- new column in Tasks table
+- add to task creation page
+
+Further functionality:
+- Sub-tasks
+- group tasks by project
+- Assign other users to your tasks?
+- admin user functionality
+- Multiple lists
