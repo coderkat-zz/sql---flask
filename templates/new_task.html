@@ -5,7 +5,7 @@
 
 	<h1>Add a new task</h1>
 
-	<form name="new_task" action="/save_task" method="post">
+	<form name="new_task" action="{{ url_for('save_task') }}" method="post">
 		Task title*: <input type="text" name="task_title"><br />
 		Task description: <input type="text" name="task_description"><br />
 		Task due date (MM-DD-YY): <input type="text" name="task_due_date"><br />

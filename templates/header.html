@@ -7,6 +7,17 @@
 </head>
 
 <body>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#"></a>
+			<ul class="nav">
+			<li><a href="{{ url_for('login') }}">Log In</a></li>
+			<li><a href="{{ url_for('logout') }}">Log Out</a></li>
+			<li><a href="{{ url_for('list_tasks') }}">Task List</a></li>
+			<li><a href="{{ url_for('new_tasks') }}">New Task</a></li>
+			</ul>
+		</div>
+	</div>
 	{% with messages = get_flashed_messages() %}
 	  	{% if messages %}
 	  		{% for message in messages %}
@@ -22,6 +33,8 @@
 	{% if 'username' not in session %}
 		<p>You are not signed in right now.</p>
 	{% endif %}
+
+
 
 	{% block content %}{% endblock %}
 </body>

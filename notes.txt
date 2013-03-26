@@ -18,12 +18,21 @@ user_id - int (foreign key to USERS table)
 --------------------------------------------------
 Create a task title and description
 - figure out how to sanitize data (URL encode) -- done!
-- require that date be in a certain format
-- success msg then redirect to all tasks view OR error message of what's missing and go back to new task page
-- create task assigned to logged in user
+- require that date be in a certain format --done!
+- success msg then redirect to all tasks view OR error message of what's missing and go back to new task page -- done!!
+- create task assigned to logged in user -- done!
+
+- clean up URLs with url_for -- done!
+- reduce db call repetition -- done!
+
+Edit tasks
+- mark tasks assigned to you as complete (forms)
+- change title, description, due date of task after creation
+- can't edit other people's tasks in any way
+- delete tasks
 
 Homepage
-- log in as user (forms, sessions) OR just browse publicly
+- log in as user (forms, sessions) OR just browse publicly --done!
 - Page to create new users
 - view all users of app
 
@@ -33,11 +42,6 @@ Options for Task List view
 - view tasks by user (search by username)
 - view tasks by status (completed or not) "split completed tasks off from incomplete tasks (Jinja templates)""
 
-Edit tasks
-- mark tasks assigned to you as complete (forms)
-- change title, description, due date of task after creation
-- can't edit other people's tasks in any way
-- delete tasks
 
 Set task as private or public
 - new column in Tasks table
@@ -49,3 +53,10 @@ Further functionality:
 - Assign other users to your tasks?
 - admin user functionality
 - Multiple lists
+
+================
+MM-DD-YY
+
+[1-12]-[1-31]-[13-99]
+
+^((0[0-9])|(1[0-2]))-((0[1-9])|(1|2)[0-9]|(3[0|1]))-((1[3-9])|([2-9][0-9]))
