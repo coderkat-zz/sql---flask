@@ -11,7 +11,7 @@ def new_user(db, email, password, first_name, last_name):
     db.commit()
     return result.lastrowid
 
-def authenticate(username, password):
+def authenticate(db, username, password):
     c = db.cursor()
     query = """SELECT * FROM Users WHERE email = ? AND password = ?"""
     c.execute(query, (username, password))

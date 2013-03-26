@@ -2,8 +2,10 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-	<h1>Welcome to Tipsy, {{ user_name }}</h1>
+	<h1>Welcome to Tipsy, a task list management app!</h1>
 
 	<a href="{{ url_for('list_tasks') }}">View all the tasks for all users.</a><br />
 	<a href="{{ url_for('new_tasks') }}">Add in a new task here.</a><br />
+	<a href="{{ url_for('login') }}">Log in as a particular user</a><br />
+	<a href="{{ url_for('logout') }}">Log out of your current session</a><br />
 {% endblock %}

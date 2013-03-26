@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, session, render_template, request, redirect, url_for
 import model
 import urllib
 import re
@@ -6,10 +6,43 @@ import re
 app = Flask(__name__) # make a new instance of the Flask class
 app.secret_key = 'some_secret'
 
+current_user = None
+
 # a decorated function aka a 'view'
 @app.route("/") # this is the decorate that tells Flask what URL/route is attached to this index function, i.e. maps URL to function
 def index():
-	return render_template("index.html", user_name="kwugirl") # the return value that's sent back to the browser as read from our index html file
+	if 'username' in session and 'password' in session:
+		db = model.connect_db()
+		authenticate_result = model.authenticate(db, session['username'], session['password'])
+		if authenticate_result:
+			current_user = session['username']
+		else:
+			flash("Incorrect username or password")
+			return redirect("/login")
+
+	elif ('username','password') in session:
+		flash("You need to enter both a username and a password")
+		return redirect("/login")
+
+	else:
+		current_user = "Not signed in"
+
+	return render_template("index.html", user_name=current_user) # the return value that's sent back to the browser as read from our index html file
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	if request.method == 'POST':
+		session['username'] = request.form['username']
+		session['password'] = request.form['password']
+		return redirect("/")
+	return render_template("login.html")
+
+@app.route('/logout')
+def logout():
+	# remove existing username from session
+	session.pop('username', None)
+	session.pop('password', None)
+	return redirect("/")
 
 @app.route("/tasks")
 def list_tasks():
@@ -25,19 +58,22 @@ def list_tasks():
 
 @app.route("/new_task")
 def new_tasks():
-	return render_template("new_task.html")
+	if 'username' not in session:
+		flash("You must be logged in to create a new task for yourself.")
+		return redirect("/")
 
-# @app.route("/new_task/<error_msg>")
-# def new_tasks_error(error_msg):
-# 	return render_template("new_task_error.html", error=error_msg)
-
+	else:
+		return render_template("new_task.html")
 
 @app.route("/save_task", methods=["POST"]) # this url will respond to posted forms rather than just get url requests
 def save_task():
 	task_title = urllib.quote(request.form['task_title']) # request object representing state of user browser, contents from form are put into dictionary on the 'request' object
 	# encoding all input
 
-	#TODO: make title required
+	# check for title in task form: if none, flash error & redirect
+	if not task_title:
+		flash("You must enter a title for your task")
+		return redirect("/new_task")
 	
 	task_description = urllib.quote(request.form['task_description'])
 	
