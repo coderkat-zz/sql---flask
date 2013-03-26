@@ -26,10 +26,12 @@ Create a task title and description
 - reduce db call repetition -- done!
 
 Edit tasks
-- mark tasks assigned to you as complete (forms)
+- mark tasks as complete
 - change title, description, due date of task after creation
-- can't edit other people's tasks in any way
 - delete tasks
+//
+- can't edit other people's tasks in any way
+- be able to only mark your own tasks as complete
 
 Homepage
 - log in as user (forms, sessions) OR just browse publicly --done!

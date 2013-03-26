@@ -73,7 +73,7 @@ def get_tasks(db, user_id):
             task = dict(zip(fields, row))
             tasks.append(task) #adds in dictionary as an item in the list, will end up with a list of dictionaries
 
-        return tasks #we return a dictionary so that latter we can use the keys in the dict as attributes when displaying variables in the HTML templates or just pull values through keys directly
+        return tasks #we return a list of dictionaries so that later we can use the keys in the dict as attributes when displaying variables in the HTML templates or just pull values through keys directly
 
     return None
 

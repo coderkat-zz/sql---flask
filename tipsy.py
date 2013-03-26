@@ -90,7 +90,7 @@ def save_task():
 	date_comparison = re.match(r'^((0[0-9])|(1[0-2]))-((0[1-9])|(1|2)[0-9]|(3[0|1]))-((1[3-9])|([2-9][0-9]))', task_due_date)
 	
 	if date_comparison:
-		# Assume that all tasks are attached to user 1
+		# set new task specific to user_id
 		task_id = model.new_task(g.db, task_title, task_description, task_due_date, session['user_id'])
 		return redirect(url_for('list_tasks'))
 
@@ -98,6 +98,12 @@ def save_task():
 		flash("Your date is not in the right format!") #flashing system basically makes it possible to record a message at the end of a request and access it next request and only next request
 		return redirect(url_for('new_tasks'))
 
+@app.route("/task_complete", methods=["POST"])
+def complete_task():
+	task_id = request.form['task_id']
+	model.complete_task(g.db, task_id)
+	flash("Marked task #" + task_id + " as complete!")
+	return redirect(url_for('list_tasks'))
 
 if __name__ == "__main__": # start web app server when we run program from command line
 	app.run(debug=True) # start server in debug mode
