@@ -1,0 +1,18 @@
+{% extends "header.html" %}
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}	
+
+	<h1>Edit a task</h1>
+
+<!-- TODO: figure out how to pre-populate fields w/existing values
+ -->	
+ 	<form name="change_task" action="{{ url_for('save_changes') }}" method="post">
+		Task title*: <input type="text" value="{{ title}}" name="task_title"><br />
+		Task description: <input type="text" value="{{'description'}}" name="task_description"><br />
+		Task due date (MM-DD-YY): <input type="text" value="{{'03-28-13'}}" name="task_due_date"><br />
+		<input type="submit" value="Change a task">
+	</form>
+
+
+{% endblock %}

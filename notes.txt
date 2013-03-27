@@ -26,8 +26,9 @@ Create a task title and description
 - reduce db call repetition -- done!
 
 Edit tasks
-- mark tasks as complete
+- mark tasks as complete -- done!
 - change title, description, due date of task after creation
+	("edit" button on /tasks page, pulls up new page with pre-filled form for task selected: user can edit fields, "submit" button, alters task in sql (hang on to taskID somewhere))
 - delete tasks
 //
 - can't edit other people's tasks in any way

@@ -105,5 +105,34 @@ def complete_task():
 	flash("Marked task #" + task_id + " as complete!")
 	return redirect(url_for('list_tasks'))
 
-if __name__ == "__main__": # start web app server when we run program from command line
+@app.route("/change_task", methods=["POST"])
+def change_task():
+	return render_template("change_task.html")
+
+@app.route("/save_changes", methods=["POST"])
+# TODO: Solve id kerfuffle
+def save_changes():
+	task_title = urllib.quote(request.form['task_title']) 
+	# follows formatting for save_task 
+	if not task_title:
+		flash("You must enter a title for your task")
+		return redirect(url_for('change_task'))
+	
+	task_description = urllib.quote(request.form['task_description'])
+	
+	task_due_date = urllib.quote(request.form['task_due_date'])
+
+	date_comparison = re.match(r'^((0[0-9])|(1[0-2]))-((0[1-9])|(1|2)[0-9]|(3[0|1]))-((1[3-9])|([2-9][0-9]))', task_due_date)
+	
+	if date_comparison:
+		task_change = model.change_task(g.db, task_title, task_description, task_due_date, task_id)
+ 		return redirect(url_for('list_tasks'))
+
+
+	else:
+		flash("Your date is not in the right format!") 
+		return redirect(url_for('change_task'))
+
+
+if __name__ == "__main__":
 	app.run(debug=True) # start server in debug mode
