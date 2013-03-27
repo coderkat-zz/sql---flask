@@ -43,10 +43,10 @@ def new_task(db, title, description, due_date, user_id):
     db.commit()
     return result.lastrowid
 
-def change_task(db, task_id, title, description, due_date):
+def change_task(db, task_title, task_description, task_due_date, task_id):
     c = db.cursor()
     query = """UPDATE Tasks SET title = ?, description = ?, due_date = ? WHERE id = ?"""
-    c.execute(query, (title, description, due_date, task_id))
+    c.execute(query, (task_title, task_description, task_due_date, task_id))
     db.commit()
     return
 

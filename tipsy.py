@@ -107,19 +107,23 @@ def complete_task():
 
 @app.route("/change_task/<int:id>", methods=["GET"])
 def change_task(id):
-	return render_template("change_task.html")
+	return render_template("change_task.html", task_id=id)
+
 
 @app.route("/save_changes", methods=["POST"])
 # TODO: Solve id kerfuffle
 def save_changes():
 	task_title = urllib.quote(request.form['task_title']) 
+
 	# follows formatting for save_task 
 	if not task_title:
 		flash("You must enter a title for your task")
 		return redirect(url_for('change_task'))
 	
 	task_description = urllib.quote(request.form['task_description'])
-	
+
+	task_id = request.form['task_id']
+
 	task_due_date = urllib.quote(request.form['task_due_date'])
 
 	date_comparison = re.match(r'^((0[0-9])|(1[0-2]))-((0[1-9])|(1|2)[0-9]|(3[0|1]))-((1[3-9])|([2-9][0-9]))', task_due_date)

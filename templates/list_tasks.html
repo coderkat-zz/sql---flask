@@ -28,7 +28,7 @@
 				{% else %}
 					<form action="{{ url_for('complete_task') }}" method="post">
 						<input type="hidden" name="task_id" value="{{  item.id  }}">
-						<input type="submit" value="Done!">
+						<input type="submit" value="Mark as done">
 					</form>
 				{% endif %}
 			</td>

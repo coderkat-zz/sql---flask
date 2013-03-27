@@ -8,7 +8,8 @@
 <!-- TODO: figure out how to pre-populate fields w/existing values
  -->	
  	<form name="change_task" action="{{ url_for('save_changes') }}" method="post">
- 		Task id*: <input type="text" value="{{ task_id }}"  name="task_id" disabled><br />
+ 		Task id*: <input type="text" value="{{ task_id }}"  name="task_id"><br />
+ 		<!-- Tried disabling this field, got screwy url call -->
 		Task title*: <input type="text" value="{{ title}}" name="task_title"><br />
 		Task description: <input type="text" value="{{'description'}}" name="task_description"><br />
 		Task due date (MM-DD-YY): <input type="text" value="{{'03-28-13'}}" name="task_due_date"><br />
