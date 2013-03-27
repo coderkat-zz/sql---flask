@@ -34,7 +34,7 @@
 			</td>
 			<td>{{  item.user_id  }}</td>
 <!-- 			TODO: figure out how to store the id as a variable we can use on other pages!!-->
-			<td><form action="{{ url_for('change_task') }}" method="post">
+			<td><form action="{{ url_for('change_task', id=item.id) }}" method="get">
 						<input type="hidden" name="task_id" value="{{  item.id  }}">
 						<input type="submit" value="Edit">
 					</form>

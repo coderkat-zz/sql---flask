@@ -105,8 +105,8 @@ def complete_task():
 	flash("Marked task #" + task_id + " as complete!")
 	return redirect(url_for('list_tasks'))
 
-@app.route("/change_task", methods=["POST"])
-def change_task():
+@app.route("/change_task/<int:id>", methods=["GET"])
+def change_task(id):
 	return render_template("change_task.html")
 
 @app.route("/save_changes", methods=["POST"])
